@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pydantic
+pycoingecko
+pandas
+numpy
+scikit-learn
+lightgbm
+passlib[bcrypt]
+pyjwt
+yfinance
