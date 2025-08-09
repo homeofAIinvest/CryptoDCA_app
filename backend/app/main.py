@@ -1,8 +1,11 @@
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from .auth import create_user, authenticate_user, get_current_user
-from .sim import run_simulation
+
+# Changed from ".auth" and ".sim" to "app.auth" and "app.sim"
+from app.auth import create_user, authenticate_user, get_current_user
+from app.sim import run_simulation
+
 import uvicorn
 
 app = FastAPI(title="CryptoDCA.ai API")
@@ -34,7 +37,7 @@ def signup(payload: SignupIn):
     ok = create_user(payload.email, payload.password)
     if not ok:
         raise HTTPException(status_code=400, detail='User already exists')
-    return {'status':'ok'}
+    return {'status': 'ok'}
 
 @app.post('/login')
 def login(payload: LoginIn):
@@ -49,4 +52,4 @@ def simulate(req: SimRequest, user=Depends(get_current_user)):
     return out
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8000)
+    uvicorn.run(app, host='0.0.0.0', port=80)
