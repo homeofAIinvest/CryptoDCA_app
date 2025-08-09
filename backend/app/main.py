@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 # Changed from ".auth" and ".sim" to "app.auth" and "app.sim"
-from app.auth import create_user, authenticate_user, get_current_user
+from .auth import create_user, authenticate_user, get_current_user
 from app.sim import run_simulation
 
 import uvicorn
